@@ -14,6 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Modifier
 
 class MainActivity : AppCompatActivity() {
     lateinit var apiService: APIService
@@ -28,8 +29,10 @@ class MainActivity : AppCompatActivity() {
 
         apiService=retrofit.create(APIService::class.java)
         //getPosts()
-        getPost(1)
-        deletePost(1)
+//        getPost(1)
+//        createPost()
+        modifyPost(1, mutableMapOf("title" to "hello(modified)","author" to "world(modified","content" to "hello(modified"))
+//        deletePost(1)
     }
 //    fun getPost(){
 //        val call=apiService.getPosts()
@@ -85,6 +88,23 @@ class MainActivity : AppCompatActivity() {
             override fun onFailure(call: Call<StringResponse>, t: Throwable) { }
 
         })
+    }
+
+    fun modifyPost(id:Int, body: MutableMap<String,Any>){
+        val call=apiService.modifyPOST(id,body)
+        call.enqueue(object: Callback<StringResponse>{ override fun onResponse( call: Call<StringResponse>, response: Response<StringResponse>
+            ) {
+               val data: StringResponse?=response.body()
+                data?.let{
+                    Log.d("mytag",it.result)
+                }
+            }
+            override fun onFailure(call: Call<StringResponse>, t: Throwable) {
+                Log.w("mytag","failed to call API: "+t.message)
+            }
+
+        })
+
     }
 
 }

@@ -4,6 +4,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import java.util.Date
@@ -13,6 +14,8 @@ data class  AllPostReaponse (val result: List<Post>)
 data class PostResponse(val result: Post)
 data class PostCreateRequest(val title: String, var author: String, var content : String)
 data class StringResponse(val result: String)
+
+
 interface APIService {
     @GET("/posts")
     fun getPosts() : Call<AllPostReaponse>
@@ -27,5 +30,10 @@ interface APIService {
 
     @DELETE("/posts/{id}")
     fun deletePost(@Path("id") id : Int) : Call<StringResponse>
+
+    @PATCH("/posts/{id}")
+    @JvmSuppressWildcards
+    //Any (=Oject)
+    fun modifyPOST(@Path("id") id: Int, @Body request: MutableMap<String,Any>) : Call<StringResponse>
 
 }
