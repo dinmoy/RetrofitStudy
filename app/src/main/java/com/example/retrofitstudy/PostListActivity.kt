@@ -30,6 +30,11 @@ class PostListActivity : AppCompatActivity() {
 
         showPosts()
     }
+
+    override fun onResume(){
+        super.onResume()
+        showPosts()
+    }
     fun showPosts(){
         val call=apiService.getPosts()
         call.enqueue(object: Callback<AllPostReaponse> {
