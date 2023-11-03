@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
 
                 }
             }
-
             override fun onFailure(call: Call<PostResponse>, t: Throwable) {
             }
 
@@ -77,6 +76,15 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+    }
+    fun createPost(){
+        val call=apiService.createPost(PostCreateRequest("android title","android author","androi content"))
+        call.enqueue(object:Callback<StringResponse>{
+            override fun onResponse( call: Call<StringResponse>, response: Response<StringResponse> ) { }
+
+            override fun onFailure(call: Call<StringResponse>, t: Throwable) { }
+
+        })
     }
 
 }
