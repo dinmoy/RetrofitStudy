@@ -1,5 +1,6 @@
 package com.example.retrofitstudy
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -27,14 +28,17 @@ class PostListActivity : AppCompatActivity() {
 
         apiService=retrofit.create(APIService::class.java)
 
+        showPosts()
     }
     fun showPosts(){
         val call=apiService.getPosts()
         call.enqueue(object: Callback<AllPostReaponse> {
+            @SuppressLint("WrongViewCast")
             override fun onResponse(
                 call: Call<AllPostReaponse>,
                 response: Response<AllPostReaponse>
             ) {
+                if ( response.isSuccessful) {
                 val data: AllPostReaponse? = response.body()
                 data?.let {
                     Log.d("mytag", it.result.toString())
@@ -45,8 +49,13 @@ class PostListActivity : AppCompatActivity() {
                     recyclerView.layoutManager = layoutManager
                     recyclerView.adapter = adapter
                 }
+
+                } else {
+                    // 없습니다
+                }
             }
             override fun onFailure(call: Call<AllPostReaponse>, t: Throwable) {
+                Log.d("mytag", t.message.toString())
             }
         })
     }
