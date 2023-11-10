@@ -19,6 +19,9 @@
             android:name=".PostWriteActivity"
             android:exported="false" />
         <activity
+            android:name=".PostModifyActivity"
+            android:exported="false" />
+        <activity
             android:name=".PostReadActivity"
             android:exported="false" />
         <activity

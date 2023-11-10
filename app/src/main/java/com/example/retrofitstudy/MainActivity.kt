@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.retrofitstudy.api.APIService
-import com.example.retrofitstudy.api.AllPostReaponse
+import com.example.retrofitstudy.api.AllPostResponse
 import com.example.retrofitstudy.api.Post
 import com.example.retrofitstudy.api.PostCreateRequest
 import com.example.retrofitstudy.api.PostResponse

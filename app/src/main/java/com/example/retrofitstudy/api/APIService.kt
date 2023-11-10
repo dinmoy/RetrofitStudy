@@ -7,10 +7,11 @@ import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
+import java.io.Serializable
 import java.util.Date
 
-data class Post(val id: Int, var title: String, var author: String, val createdAt: Date, var content : String)
-data class  AllPostReaponse (val result: List<Post>)
+data class Post(val id: Int, var title: String, var author: String, val createdAt: Date, var content : String) : Serializable
+data class  AllPostResponse (val result: List<Post>)
 data class PostResponse(val result: Post)
 data class PostCreateRequest(val title: String, var author: String, var content : String)
 data class StringResponse(val result: String)
@@ -18,7 +19,7 @@ data class StringResponse(val result: String)
 
 interface APIService {
     @GET("/posts")
-    fun getPosts() : Call<AllPostReaponse>
+    fun getPosts() : Call<AllPostResponse>
 
     @GET("/posts/{id}")
     fun getPost(@Path("id") id : Int) : Call<PostResponse>
