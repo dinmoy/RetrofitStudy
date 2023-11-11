@@ -55,7 +55,7 @@ class PostModifyActivity : AppCompatActivity() {
             override fun onResponse(
                 call: Call<StringResponse>, response: Response<StringResponse>
             ) {
-
+                finish()
             }
 
             override fun onFailure(call: Call<StringResponse>, t: Throwable) {

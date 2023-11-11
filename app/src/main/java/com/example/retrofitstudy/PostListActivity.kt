@@ -8,7 +8,7 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitstudy.api.APIService
-import com.example.retrofitstudy.api.AllPostReaponse
+import com.example.retrofitstudy.api.AllPostResponse
 import com.example.retrofitstudy.api.StringResponse
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
@@ -44,14 +44,14 @@ class PostListActivity : AppCompatActivity() {
     }
     fun showPosts(){
         val call=apiService.getPosts()
-        call.enqueue(object: Callback<AllPostReaponse> {
+        call.enqueue(object: Callback<AllPostResponse> {
             @SuppressLint("WrongViewCast")
             override fun onResponse(
-                call: Call<AllPostReaponse>,
-                response: Response<AllPostReaponse>
+                call: Call<AllPostResponse>,
+                response: Response<AllPostResponse>
             ) {
                 if ( response.isSuccessful) {
-                val data: AllPostReaponse? = response.body()
+                val data: AllPostResponse? = response.body()
                 data?.let {
                     Log.d("mytag", it.result.toString())
                     val layoutManager = LinearLayoutManager(this@PostListActivity)
@@ -66,7 +66,7 @@ class PostListActivity : AppCompatActivity() {
                     // 없습니다
                 }
             }
-            override fun onFailure(call: Call<AllPostReaponse>, t: Throwable) {
+            override fun onFailure(call: Call<AllPostResponse>, t: Throwable) {
                 Log.d("mytag", t.message.toString())
             }
         })

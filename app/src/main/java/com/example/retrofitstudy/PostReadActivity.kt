@@ -48,8 +48,9 @@ class PostReadActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.post_modify_btn).setOnClickListener {
-            val intent = Intent(this, PostWriteActivity::class.java)
+            val intent = Intent(this, PostModifyActivity::class.java)
             intent.putExtra("post", post)
+            finish()
             startActivity(intent)
         }
     }
